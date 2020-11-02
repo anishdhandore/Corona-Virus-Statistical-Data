@@ -14,17 +14,33 @@ app = Flask(__name__)
 def home():
     if request.method=="POST":
         country = request.form.get('country')
-        
+
     return render_template('index.html')
 
 @app.route("/result", methods = ["GET", "POST"])
 def result():
     user_country = request.args.get('country', None)
 
-    name = display(user_country)
-    
+    data = display(user_country)
 
-    return render_template('result.html', country=user_country, data=data)
+    cases =("India has " + str(data['confirmed']) + " cases. ")
+    deaths = ("Deaths: "+ str(data['deaths']))
+    critical = ("Critical: "+ str(data['critical']))
+    recovered = ("Recovered: " + str(data['recovered']))
+    updated = ("Last updated on: " + data['latest_update'])
+
+
+
+    return render_template(
+        'result.html',
+        country=user_country,
+        cases = cases,
+        deaths = deaths,
+        critical = critical,
+        recovered = recovered,
+        updated = updated
+
+    )
 
 if __name__=="__main__":
     app.run(debug=True)
@@ -43,5 +59,3 @@ if __name__=="__main__":
 
 
 #display(code,country_name,confirmed,deaths,critical,recovered,latest_update)
-
-
