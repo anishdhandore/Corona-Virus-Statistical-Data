@@ -23,7 +23,7 @@ def result():
 
     data = display(user_country)
 
-    cases =("India has " + str(data['confirmed']) + " cases. ")
+    cases =(str(data['country_name']) " has " + str(data['confirmed']) + " cases. ")
     deaths = ("Deaths: "+ str(data['deaths']))
     critical = ("Critical: "+ str(data['critical']))
     recovered = ("Recovered: " + str(data['recovered']))
