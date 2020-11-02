@@ -5,7 +5,7 @@ from datetime import date
 
 
 def display(country):
-    
+
 
     url = "https://rapidapi.p.rapidapi.com/country"
 
@@ -28,22 +28,35 @@ def display(country):
     recovered = data[0]["recovered"]
     latest_update = data[0]["lastUpdate"]
 
-    return '''
-    {} has {} cases,
-    Deaths : {},
-    Critical : {},
-    Recovered : {},
-    Updated on : {}'''.format(country_name,confirmed,deaths,critical,recovered,latest_update)
 
-        
-
-        
-
-        
-    
-    
+    data = {
+        'code' : data[0]["code"],
+        'country_name' : data[0]["country"],
+        'confirmed' : data[0]["confirmed"],
+        'deaths' : data[0]["deaths"],
+        'critical' : data[0]["critical"],
+        'recovered' : data[0]["recovered"],
+        'latest_update' : data[0]["lastUpdate"]
 
 
+    }
+    return data
+    #return '''
+    #{} has {} cases,
+    #Deaths : {},
+    #Critical : {},
+    #Recovered : {},
+    #Updated on : {}'''.format(country_name,confirmed,deaths,critical,recovered,latest_update)
 
-    
+
+
+
+
+
+
+
+
+
+
+
     #return code,country_name,confirmed,deaths,critical,recovered,latest_update
